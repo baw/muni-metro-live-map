@@ -1,5 +1,5 @@
 define(function () {
-	var lastBusTime = {};
+	var lastCarTime = {};
 
 	var load = function (url, onSuccess, onError) {
 		var client = new XMLHttpRequest();
@@ -35,12 +35,12 @@ define(function () {
 			});
 		},
 
-		loadBusChanges: function (routeName) {
-			var time = (lastBusTime[routeName] || 0);
+		loadCarChanges: function (routeName) {
+			var time = (lastCarTime[routeName] || 0);
 			var url = `http://webservices.nextbus.com/service/publicJSONFeed?command=vehicleLocations&a=sf-muni&r=${routeName}&t=${time}`;
 
 			return load(url, function (json, resolve) {
-				lastBusTime[routeName] = json.lastTime.time;
+				lastCarTime[routeName] = json.lastTime.time;
 				resolve(json.vehicle);
 			});
 		}
