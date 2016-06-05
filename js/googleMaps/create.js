@@ -1,15 +1,20 @@
 define(function () {
+	var map;
 	return {
-		marker: function (lat, long, icon) {
+		marker: function (lat, lng, icon) {
 			return new google.maps.Marker({
-				position: { lat: 37.70, lng: -122.44 },
+				position: { lat: lat, lng: lng },
 				map: map,
-				icon: image
+				icon: icon
 			});
 		},
 
 		path: function () {
-			
+
+		},
+
+		setMap: function (newMap) {
+			map = newMap;
 		}
 	};
 });
